@@ -8,7 +8,7 @@ RandomForestClassifier predictions.
 import numpy as np
 import copy
 from .calibration import calibrateEB
-from sklearn.ensemble.forest import _generate_sample_indices, _get_n_samples_bootstrap
+from sklearn.ensemble._forest import _generate_sample_indices, _get_n_samples_bootstrap
 from .due import _due, _BibTeX
 
 __all__ = ("calc_inbag", "random_forest_error", "_bias_correction",
@@ -86,11 +86,7 @@ def _core_computation(X_train, X_test, inbag, pred_centered, n_trees,
         An array with shape (n_test_sample, n_features).
 
     inbag : ndarray
-        The inbag matrix that fit the data. If set to `None` (default) it
-        will be inferred from the forest. However, this only works for trees
-        for which bootstrapping was set to `True`. That is, if sampling was
-        done with replacement. Otherwise, users need to provide their own
-        inbag matrix.
+        The inbag matrix that fit the data
 
     pred_centered : ndarray
         Centered predictions that are an intermediate result in the
@@ -146,11 +142,7 @@ def _bias_correction(V_IJ, inbag, pred_centered, n_trees):
         Intermediate result in the computation.
 
     inbag : ndarray
-        The inbag matrix that fit the data. If set to `None` (default) it
-        will be inferred from the forest. However, this only works for trees
-        for which bootstrapping was set to `True`. That is, if sampling was
-        done with replacement. Otherwise, users need to provide their own
-        inbag matrix.
+        The inbag matrix that fit the data.
 
     pred_centered : ndarray
         Centered predictions that are an intermediate result in the
